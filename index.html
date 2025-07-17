@@ -1,6 +1,421 @@
-<p>Looks like this site is still in production.</p>
-<p>for now here are all the urls that are aviable</p>
-<p><a href="https://blockblast.05050101.xyz/">blockblast</a></p>
-<p><a href="https://panel.05050101.xyz">pterodactyl</a></p>
-<p><a href="https://guns.05050101.xyz">guns</a></p>
-<p>&nbsp;</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .service-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .service-title {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .service-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-placeholder {
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .service-button {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .service-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #2980b9, #1abc9c);
+        }
+
+        .pterodactyl-card {
+            animation-delay: 0.1s;
+        }
+
+        .blockblast-card {
+            animation-delay: 0.2s;
+        }
+
+        .guns-card {
+            animation-delay: 0.3s;
+        }
+
+        .filehost-card {
+            animation-delay: 0.4s;
+        }
+
+        .pterodactyl-card .video-container {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .blockblast-card .video-container {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-particles"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Welcome to Our Platform</h1>
+            <p class="subtitle">!!!THIS WEBSITE IS NOT FINAL, THERE MAY BE ERRORS AND THINGS MAY NOT BE COMPLETE/WORKING</p>
+        </header>
+
+        <div class="services-grid">
+            <!-- Petrodycl Service -->
+            <div class="service-card pterodactyl-card">
+                <div class="service-header">
+                    <h2 class="service-title">Petrodycl</h2>
+                    <p class="service-description">
+                        Custom hosting infrastructure for Discord bots and applications. 
+                        Self-hosted setup using Pterodactyl Panel, Cloudflare Tunnel, and Docker for reliable bot management.
+                    </p>
+                </div>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        🤖 Discord Bot Hosting<br>
+                        <small>Infrastructure Overview</small>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <a href="https://panel.05050101.xyz/" class="service-button">Access Petrodycl</a>
+                </div>
+            </div>
+
+            <!-- Block Blast Service -->
+            <div class="service-card blockblast-card">
+                <div class="service-header">
+                    <h2 class="service-title">Block Blast</h2>
+                    <p class="service-description">
+                        Online version of the popular mobile puzzle game. Combines Tetris-style gameplay with block puzzles 
+                        for an engaging and relaxing experience that's easy to learn but challenging to master.
+                    </p>
+                </div>
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        🧩 Block Blast Online<br>
+                        <small>Puzzle Game Preview</small>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <a href="https://blockblast.05050101.xyz/" class="service-button">Play Block Blast</a>
+                </div>
+            </div>
+
+            <!-- Guns.lol Service -->
+            <div class="service-card guns-card">
+                <div class="service-header">
+                    <h2 class="service-title">My Guns.lol</h2>
+                    <p class="service-description">
+                        Simple link shortener and bio page service popular with Discord users. 
+                        Create short URLs and personal profile pages to share all your links and social media in one place.
+                    </p>
+                </div>
+                <div style="text-align: center;">
+                    <a href="https://guns.05050101.xyz/" class="service-button">Visit My Guns.lol</a>
+                </div>
+            </div>
+
+            <!-- Filehost Service -->
+            <div class="service-card filehost-card">
+                <div class="service-header">
+                    <h2 class="service-title">Maxvel's Filehost</h2>
+                    <p class="service-description">
+                        Host documents, text-based files, videos, and photos for free. 
+                        Simple file sharing service for all your hosting needs.
+                    </p>
+                </div>
+                <div style="text-align: center;">
+                    <a href="https://fileshare.05050101.xyz/" class="service-button">Access Filehost</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="https://blockblast.05050101.xyz/">blockblast</a>
+                <a href="https://panel.05050101.xyz/">pterodactyl</a>
+                <a href="https://guns.05050101.xyz/">guns</a>
+            </div>
+            <p>&copy; 2025 Our Platform. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particleContainer = document.querySelector('.floating-particles');
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particleContainer.appendChild(particle);
+            }
+        }
+
+        // Add hover effects to service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Initialize particles when page loads
+        window.addEventListener('load', createParticles);
+
+        // Add some interactive elements
+        document.querySelectorAll('.service-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            .service-button {
+                position: relative;
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
