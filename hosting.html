@@ -156,30 +156,6 @@
             padding: 0 2rem;
         }
 
-        .demo-container {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border: 1px solid #fbbf24;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            max-width: 300px;
-        }
-
-        .demo-container::before {
-            content: 'Most Popular';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            color: #0f172a;
-            font-weight: bold;
-            padding: 8px;
-            font-size: 0.8rem;
-        }
-
         .pricing-header h2 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
@@ -190,61 +166,7 @@
             font-size: 1.1rem;
             color: #94a3b8;
         }
-        .demo-container {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border: 1px solid #fbbf24;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            max-width: 300px;
-        }
 
-        .demo-container::before {
-            content: 'Most Popular';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            color: #0f172a;
-            font-weight: bold;
-            padding: 8px;
-            font-size: 0.8rem;
-        }
-
-        .plan-btn {
-            width: 100%;
-            padding: 12px 24px;
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            color: #0f172a;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 1rem;
-        }
-
-        .plan-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
-        }
-
-        .plan-btn:active {
-            transform: translateY(0);
-        }
-
-        .plan-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: #3b82f6;
-        }
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -476,7 +398,7 @@
     <section class="pricing">
         <div class="pricing-header">
             <h2>Choose Your Plan</h2>
-            <p>Flexible hosting solutions that grow with your needs. All plans include Lightning fast storage and premium support.</p>
+            <p>Flexible hosting solutions that grow with your needs. All plans include up to 32GB storage and premium support.</p>
         </div>
         
         <div class="pricing-grid">
@@ -492,29 +414,18 @@
                     <li><i class="fas fa-check"></i> Instant Setup</li>
                     <li><i class="fas fa-check"></i> Cancel Anytime</li>
                 </ul>
-            <div class="demo-container">
-                <div class="plan-name">Professional</div>
-                <p style="color: #94a3b8; margin-bottom: 1rem;">Here's your styled button:</p>
-                
-                <button
-                    class="plan-btn"
-                    onclick="window.sellAuthEmbed.checkout(this, { 
-                        cart: [{ productId: 398910, variantId: 571402, quantity: 1 }], 
-                        shopId: 142685 
-                    })"
-                >
-                    Buy Professional Plan
-                </button>
-            </div>
-
             <script src="https://sellauth.com/assets/js/sellauth-embed-2.js"></script>
-            <script>
-                // Add loading state for button
-                document.querySelector('.plan-btn').addEventListener('click', function() {
-                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-                    this.style.pointerEvents = 'none';
-                });
-            </script>
+
+            <!-- Button 1 -->
+            <button
+            onclick="window.sellAuthEmbed.checkout(this, { 
+                cart: [{ productId: 398910, variantId: 571402, quantity: 1 }], 
+                shopId: 142685 
+            })"
+            >
+            Buy Starter
+            </button>
+            </div>D
 
             <div class="pricing-card popular">
                 <div class="plan-name">Professional</div>
@@ -528,29 +439,17 @@
                     <li><i class="fas fa-check"></i> Instant Setup</li>
                     <li><i class="fas fa-check"></i> Cancel Anytime</li>
                 </ul>
-            <div class="demo-container">
-                <div class="plan-name">Professional</div>
-                <p style="color: #94a3b8; margin-bottom: 1rem;">Here's your styled button:</p>
-                
-                <button
-                    class="plan-btn"
-                    onclick="window.sellAuthEmbed.checkout(this, { 
-                        cart: [{ productId: 398910, variantId: 571403, quantity: 1 }], 
-                        shopId: 142685 
-                    })"
-                >
-                    Buy Professional Plan
-                </button>
-            </div>
-
             <script src="https://sellauth.com/assets/js/sellauth-embed-2.js"></script>
-            <script>
-                // Add loading state for button
-                document.querySelector('.plan-btn').addEventListener('click', function() {
-                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-                    this.style.pointerEvents = 'none';
-                });
-            </script>
+            <!-- Button 2 -->
+            <button
+            onclick="window.sellAuthEmbed.checkout(this, { 
+                cart: [{ productId: 398910, variantId: 571403, quantity: 1 }], 
+                shopId: 142685 
+            })"
+            >
+            Buy Variant Professional
+            </button>
+            </div>
 
             <div class="pricing-card">
                 <div class="plan-name">Enterprise</div>
@@ -564,29 +463,17 @@
                     <li><i class="fas fa-check"></i> Instant Setup</li>
                     <li><i class="fas fa-check"></i> Cancel Anytime</li>
                 </ul>
-            <div class="demo-container">
-                <div class="plan-name">Professional</div>
-                <p style="color: #94a3b8; margin-bottom: 1rem;">Here's your styled button:</p>
-                
-                <button
-                    class="plan-btn"
-                    onclick="window.sellAuthEmbed.checkout(this, { 
-                        cart: [{ productId: 398910, variantId: 571404, quantity: 1 }], 
-                        shopId: 142685 
-                    })"
-                >
-                    Buy Professional Plan
-                </button>
-            </div>
-
             <script src="https://sellauth.com/assets/js/sellauth-embed-2.js"></script>
-            <script>
-                // Add loading state for button
-                document.querySelector('.plan-btn').addEventListener('click', function() {
-                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-                    this.style.pointerEvents = 'none';
-                });
-            </script>
+            <!-- Button 3 -->
+            <button
+            onclick="window.sellAuthEmbed.checkout(this, { 
+                cart: [{ productId: 398910, variantId: 571404, quantity: 1 }], 
+                shopId: 142685 
+            })"
+            >
+            Go whith Enterprise
+            </button>
+            </div>
         </div>
     </section>
 
