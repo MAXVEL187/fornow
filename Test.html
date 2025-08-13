@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maxvel187 – Bio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Germany-based creator • Funk Infernal • 5,624 followers">
+  <style>
+    :root{
+      --bg:#111;
+      --fg:#eee;
+      --accent:#00bfff;
+      --font:"Segoe UI",system-ui,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      background:var(--bg);
+      color:var(--fg);
+      font-family:var(--font);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      padding:2rem;
+    }
+    .card{
+      max-width:420px;
+      width:100%;
+      text-align:center;
+      border:1px solid #222;
+      border-radius:12px;
+      padding:2.5rem;
+      background:radial-gradient(circle at top left,#1a1a1a 0%,#111 100%);
+      box-shadow:0 8px 24px rgba(0,0,0,.5);
+    }
+    .flag{
+      font-size:3rem;
+      margin-bottom:.5rem;
+    }
+    .avatar{
+      width:140px;
+      height:140px;
+      border-radius:50%;
+      object-fit:cover;
+      border:3px solid var(--accent);
+      margin-bottom:1rem;
+    }
+    h1{
+      font-size:1.8rem;
+      letter-spacing:.05em;
+      margin-bottom:.3rem;
+    }
+    .handle{
+      font-size:1rem;
+      color:#888;
+      margin-bottom:1rem;
+    }
+    .followers{
+      font-weight:600;
+      color:var(--accent);
+      margin-bottom:1.5rem;
+    }
+    .track{
+      font-size:.9rem;
+      margin-bottom:1.2rem;
+    }
+    .player{
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+      justify-content:center;
+      font-size:.8rem;
+      color:#666;
+    }
+    .progress{
+      flex:1;
+      height:4px;
+      background:#222;
+      border-radius:2px;
+      overflow:hidden;
+    }
+    .bar{
+      width:0%;
+      height:100%;
+      background:var(--accent);
+      animation:load 2s ease-in-out forwards;
+    }
+    @keyframes load{to{width:72%}} /* tasty fake progress */
+    .footer{
+      margin-top:1.5rem;
+      font-size:.75rem;
+      color:#555;
+    }
+    @media(max-width:480px){
+      .card{padding:2rem 1.5rem}
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="flag">🇩🇪</div>
+    <img class="avatar"
+         src="https://r2.guns.lol/af14be76-d59e-479c-87ab-1d73f8c98de5.webp"
+         alt="Maxvel187">
+    <h1>Maxvel187</h1>
+    <div class="handle">@Maxvel187</div>
+    <div class="followers">5,624 followers</div>
+
+    <div class="track">FUNK INFERNAL</div>
+    <div class="player">
+      <span>0:00</span>
+      <div class="progress"><div class="bar"></div></div>
+      <span>0:00</span>
+    </div>
+
+    <div class="footer">Germany • guns.lol/maxvel187</div>
+  </div>
+</body>
+</html>
