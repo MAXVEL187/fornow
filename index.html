@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Our Platform</title>
+    <title>Hello World!</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            background: linear-gradient(135deg, #2c3e50 0%, #242424 100%);
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -89,7 +89,7 @@
         .service-button {
             display: inline-block;
             padding: 10px 25px;
-            background: linear-gradient(135deg, #3498db, #2980b9);
+            background: linear-gradient(135deg, #333333, #242424);
             color: white;
             text-decoration: none;
             border-radius: 8px;
@@ -103,7 +103,7 @@
         .service-button:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            background: linear-gradient(135deg, #2980b9, #1abc9c);
+            background: linear-gradient(135deg, rgb(82, 82, 82), hsl(0, 0%, 30%));
         }
 
         .pterodactyl-card {
@@ -217,9 +217,10 @@
 </head>
 <body>
     <div class="floating-particles"></div>
-    
     <div class="container">
         <header>
+            <h1>Hello World!</h1>
+            <p class="subtitle"></p>
         </header>
 
         <div class="services-grid">
@@ -248,20 +249,7 @@
                 <div style="text-align: center;">
                     <a href="https://blockblast.05050101.xyz/" class="service-button">Play Block Blast</a>
                 </div>
-            </div>
-
-            <!-- Guns.lol Service -->
-            <div class="service-card guns-card">
-                <div class="service-header">
-                    <h2 class="service-title">My Guns.lol</h2>
-                    <p class="service-description">
-                    </p>
-                </div>
-                <div style="text-align: center;">
-                    <a href="https://guns.05050101.xyz/" class="service-button">Visit My Guns.lol</a>
-                </div>
-            </div>
-            
+            </div>       
             <div class="service-card guns-card">
                 <div class="service-header">
                     <h2 class="service-title">Url-Shortener</h2>
@@ -291,12 +279,9 @@
 
         <footer>
             <div class="footer-links">
-                <a href="https://blockblast.05050101.xyz/">blockblast</a>
-                <a href="https://05050101.xyz/hosting">pterodactyl</a>
-                <a href="https://guns.05050101.xyz/">guns</a>
-                <a href="https://fileshare.05050101.xyz/">filehost</a>  
+                <a href="https://guns.05050101.xyz">My guns.lol</a>
             </div>
-            <p>&copy; 2025 Our Platform. All rights reserved.</p>
+            <p>&copy; 2025 -  All rights reserved.</p>
         </footer>
     </div>
 
@@ -310,7 +295,7 @@
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDelay = Math.random() * 1 + 's';
                 particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
                 particleContainer.appendChild(particle);
             }
