@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World!</title>
+    <title></title>
     <style>
         * {
             margin: 0;
@@ -106,22 +106,6 @@
             background: linear-gradient(135deg, rgb(82, 82, 82), hsl(0, 0%, 30%));
         }
 
-        .pterodactyl-card {
-            animation-delay: 0.1s;
-        }
-
-        .blockblast-card {
-            animation-delay: 0.2s;
-        }
-
-        .guns-card {
-            animation-delay: 0.3s;
-        }
-
-        .filehost-card {
-            animation-delay: 0.4s;
-        }
-
         footer {
             text-align: center;
             padding: 40px 0;
@@ -167,25 +151,6 @@
             }
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .service-card {
-                padding: 20px;
-            }
-            
-            .container {
-                padding: 10px;
-            }
-        }
-
         .floating-particles {
             position: fixed;
             top: 0;
@@ -224,13 +189,11 @@
         </header>
 
         <div class="services-grid">
-            <!-- Pterodactyl Service -->
             <div class="service-card pterodactyl-card">
                 <div class="service-header">
                     <h2 class="service-title">Hosting</h2>
                     <p class="service-description">
-                        Free hosting infrastructure for Discord bots and applications. 
-                        Self-hosted setup using Pterodactyl Panel, Cloudflare Tunnel, and Docker for reliable bot management.
+                        Free hosting infrastructure for Discord bots and applications.
                     </p>
                 </div>
                 <div style="text-align: center;">
@@ -238,7 +201,6 @@
                 </div>
             </div>
 
-            <!-- Block Blast Service -->
             <div class="service-card blockblast-card">
                 <div class="service-header">
                     <h2 class="service-title">Block Blast</h2>
@@ -249,13 +211,13 @@
                 <div style="text-align: center;">
                     <a href="https://blockblast.05050101.xyz/" class="service-button">Play Block Blast</a>
                 </div>
-            </div>       
+            </div>
+
             <div class="service-card guns-card">
                 <div class="service-header">
                     <h2 class="service-title">Url-Shortener</h2>
                     <p class="service-description">
-                        A Url is to long? why not just make it shorter?
-                    </p>
+                        A Url is too long? Make it shorter.
                     </p>
                 </div>
                 <div style="text-align: center;">
@@ -263,12 +225,11 @@
                 </div>
             </div>
 
-            <!-- Filehost Service -->
             <div class="service-card filehost-card">
                 <div class="service-header">
                     <h2 class="service-title">Filehost</h2>
                     <p class="service-description">
-                        Host documents, text-based files, videos, and photos for free. Simple file sharing service for all your hosting needs.
+                        Host documents, videos, and photos for free.
                     </p>
                 </div>
                 <div style="text-align: center;">
@@ -281,15 +242,14 @@
             <div class="footer-links">
                 <a href="https://guns.05050101.xyz">My guns.lol</a>
             </div>
-            <p>&copy; 2025 -  All rights reserved.</p>
+            <p>&copy; 2025 - All rights reserved.</p>
         </footer>
     </div>
 
     <script>
-        // Create floating particles
+        // Floating particles
         function createParticles() {
             const particleContainer = document.querySelector('.floating-particles');
-            
             for (let i = 0; i < 50; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
@@ -300,41 +260,16 @@
                 particleContainer.appendChild(particle);
             }
         }
-
-        // Add hover effects to service cards
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Smooth scrolling for better UX
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Initialize particles when page loads
         window.addEventListener('load', createParticles);
 
-        // Add some interactive elements
+        // Ripple effect
         document.querySelectorAll('.service-button').forEach(button => {
             button.addEventListener('click', function(e) {
-                // Add ripple effect
                 const ripple = document.createElement('span');
                 const rect = this.getBoundingClientRect();
                 const size = Math.max(rect.width, rect.height);
                 const x = e.clientX - rect.left - size / 2;
                 const y = e.clientY - rect.top - size / 2;
-                
                 ripple.style.width = ripple.style.height = size + 'px';
                 ripple.style.left = x + 'px';
                 ripple.style.top = y + 'px';
@@ -344,31 +279,43 @@
                 ripple.style.transform = 'scale(0)';
                 ripple.style.animation = 'ripple 0.6s linear';
                 ripple.style.pointerEvents = 'none';
-                
                 this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
+                setTimeout(() => ripple.remove(), 600);
             });
         });
-
-        // Add CSS for ripple animation
         const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
+        style.textContent = `@keyframes ripple {to {transform: scale(4);opacity: 0;}} .service-button {position: relative;overflow: hidden;}`;
+        document.head.appendChild(style);
+
+        // Typewriter + bounce in browser title
+        document.addEventListener("DOMContentLoaded", () => {
+            const text = "Maxvel187";
+            let index = 0;
+            let typingDone = false;
+            let bounceIndex = 0;
+            const bounceVariants = [
+                "ᴹᵃˣᵛᵉˡ187",
+                "Mᵃˣᵛᵉˡ187",
+                "Mₐₓᵥₑₗ187"
+            ];
+
+            function typeWriter() {
+                if (!typingDone) {
+                    if (index < text.length) {
+                        document.title = text.substring(0, index + 1);
+                        index++;
+                        setTimeout(typeWriter, 150);
+                    } else {
+                        typingDone = true;
+                        setInterval(() => {
+                            document.title = bounceVariants[bounceIndex];
+                            bounceIndex = (bounceIndex + 1) % bounceVariants.length;
+                        }, 200);
+                    }
                 }
             }
-            
-            .service-button {
-                position: relative;
-                overflow: hidden;
-            }
-        `;
-        document.head.appendChild(style);
+            typeWriter();
+        });
     </script>
 </body>
 </html>
