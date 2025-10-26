@@ -12,6 +12,9 @@
         }
 
         body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* already set */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #0a0a0a;
             min-height: 100vh;
@@ -19,64 +22,8 @@
             position: relative;
         }
 
-        /* Page load animation overlay */
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0a0a0a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            animation: fadeOut 0.8s ease-out 1.5s forwards;
-        }
-
-        .loader-content {
-            text-align: center;
-        }
-
-        .loader-circle {
-            width: 80px;
-            height: 80px;
-            border: 3px solid #1a1a1a;
-            border-top: 3px solid #00a8ff;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        .loader-text {
-            color: #00a8ff;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
-        }
-
-        @keyframes fadeOut {
-            to { opacity: 0; pointer-events: none; }
-        }
-
-        /* Main content hidden until loaded */
-        .main-content {
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1.2s forwards;
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; }
+        .container {
+            flex: 1; /* take all available space before footer */
         }
 
         .container {
@@ -98,13 +45,23 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: slideDown 1s ease-out;
+        }
+
+        h1::after {
+            content: '|';
+            color: #00a8ff;
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .subtitle {
             font-size: 1.2rem;
             color: #888;
-            animation: slideDown 1s ease-out 0.2s both;
         }
 
         .services-grid {
@@ -123,7 +80,26 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-            animation: cardSlideUp 0.8s ease-out;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .service-card.show {
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(-10deg);
+            }
+            60% {
+                transform: scale(1.1) rotate(2deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
         }
 
         .service-card::before {
@@ -207,10 +183,6 @@
             box-shadow: 0 6px 20px rgba(0, 168, 255, 0.5);
         }
 
-        .blockblast-card { animation-delay: 0.1s; }
-        .guns-card { animation-delay: 0.2s; }
-        .filehost-card { animation-delay: 0.3s; }
-
         footer {
             text-align: center;
             padding: 40px 0;
@@ -248,16 +220,6 @@
 
         .footer-links a:hover {
             color: #33b5ff;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes cardSlideUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
@@ -317,14 +279,6 @@
     </style>
 </head>
 <body>
-    <!-- Page Loader -->
-    <div class="page-loader">
-        <div class="loader-content">
-            <div class="loader-circle"></div>
-            <div class="loader-text">LOADING...</div>
-        </div>
-    </div>
-
     <!-- Floating Bubbles Background -->
     <div class="floating-bubbles">
         <div class="bubble"></div>
@@ -338,57 +292,79 @@
     </div>
 
     <!-- Main Content -->
-    <div class="main-content">
-        <div class="container">
-            <header>
-                <h1>Hello World!</h1>
-                <p class="subtitle"></p>
-            </header>
+    <div class="container">
+        <header>
+            <h1 id="typed-text"></h1>
+            <p class="subtitle"></p>
+        </header>
 
-            <div class="services-grid">
-                <div class="service-card blockblast-card">
-                    <div class="service-header">
-                        <h2 class="service-title">Block Blast</h2>
-                        <p class="service-description">Online version of the popular mobile puzzle game.</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <a href="https://blockblast.05050101.xyz/" class="service-button">Play Block Blast</a>
-                    </div>
-                </div>       
-
-                <div class="service-card guns-card">
-                    <div class="service-header">
-                        <h2 class="service-title">Url-Shortener</h2>
-                        <p class="service-description">A Url is too long? Why not just make it shorter?</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <a href="https://urls.05050101.xyz/" class="service-button">Make a link shorter</a>
-                    </div>
+        <div class="services-grid">
+            <div class="service-card blockblast-card">
+                <div class="service-header">
+                    <h2 class="service-title">Block Blast</h2>
+                    <p class="service-description">Online version of the popular mobile puzzle game.</p>
                 </div>
+                <div style="text-align: center;">
+                    <a href="https://blockblast.05050101.xyz/" class="service-button">Play Block Blast</a>
+                </div>
+            </div>       
 
-                <div class="service-card filehost-card">
-                    <div class="service-header">
-                        <h2 class="service-title">Filehost</h2>
-                        <p class="service-description">
-                            Host documents, text-based files, videos, and photos for free. Simple file sharing service for all your hosting needs.
-                        </p>
-                    </div>
-                    <div style="text-align: center;">
-                        <a href="https://fileshare.05050101.xyz/" class="service-button">Access Filehost</a>
-                    </div>
+            <div class="service-card guns-card">
+                <div class="service-header">
+                    <h2 class="service-title">Url-Shortener</h2>
+                    <p class="service-description">A Url is too long? Why not just make it shorter?</p>
+                </div>
+                <div style="text-align: center;">
+                    <a href="https://urls.05050101.xyz/" class="service-button">Make a link shorter</a>
                 </div>
             </div>
 
-            <footer>
-                <div class="footer-links">
-                    <a href="https://guns.05050101.xyz">My guns.lol</a>
+            <div class="service-card filehost-card">
+                <div class="service-header">
+                    <h2 class="service-title">Filehost</h2>
+                    <p class="service-description">
+                        Host documents, text-based files, videos, and photos for free. Simple file sharing service for all your hosting needs.
+                    </p>
                 </div>
-                <p>&copy; 2025 - All rights reserved.</p>
-            </footer>
+                <div style="text-align: center;">
+                    <a href="https://fileshare.05050101.xyz/" class="service-button">Access Filehost</a>
+                </div>
+            </div>
         </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://guns.05050101.xyz">My guns.lol</a>
+        </div>
+        <p>&copy; 2025 - All rights reserved.</p>
+    </footer>
     </div>
 
     <script>
+        // Clean typing effect
+        const text = "Hello World!";
+        const typedTextElement = document.getElementById('typed-text');
+        let charIndex = 0;
+
+        function typeText() {
+            if (charIndex < text.length) {
+                typedTextElement.textContent += text.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeText, 50);
+            }
+        }
+
+        // Start typing immediately
+        typeText();
+
+        // Cards pop in effect with staggered timing
+        const cards = document.querySelectorAll('.service-card');
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add('show');
+            }, 200 + (index * 200));
+        });
+
         // Ripple effect on buttons
         document.querySelectorAll('.service-button').forEach(button => {
             button.addEventListener('click', function(e) {
@@ -421,16 +397,16 @@
         document.head.appendChild(style);
 
         // Typewriter effect for browser tab title
-        (function(){
-            const text = "Maxvel187";
+        (function() {
+            const tabText = "Maxvel187";
             let step = 0;
             let forward = true;
-            
-            setInterval(() => {
+
+            function updateTitle() {
                 if (forward) {
                     step++;
-                    if (step > text.length) {
-                        step = text.length - 1;
+                    if (step > tabText.length) {
+                        step = tabText.length - 1;
                         forward = false;
                     }
                 } else {
@@ -440,9 +416,13 @@
                         forward = true;
                     }
                 }
-                document.title = text.substring(0, step);
-            }, 200);
+                document.title = tabText.substring(0, step);
+                setTimeout(() => requestAnimationFrame(updateTitle), 300); // throttled to 200ms
+            }
+
+            updateTitle();
         })();
+
     </script>
 </body>
 </html>
