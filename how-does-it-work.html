@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Maxvel's System Flowcharts</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #f3f4f6;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #00a8ff 0%, #0077cc 100%);
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 168, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: #1a1a1a;
+            border: 2px solid #00a8ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.2);
+        }
+
+        nav h2 {
+            color: #00a8ff;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .nav-link {
+            background: #2a2a2a;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #f3f4f6;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            display: block;
+        }
+
+        .nav-link:hover {
+            background: #00a8ff;
+            border-color: #00a8ff;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.4);
+        }
+
+        .flowchart-section {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .flowchart-section:hover {
+            border-color: #00a8ff;
+            box-shadow: 0 8px 30px rgba(0, 168, 255, 0.2);
+        }
+
+        .flowchart-section h2 {
+            color: #00a8ff;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #333;
+        }
+
+        .flowchart-section h3 {
+            color: #ffd93d;
+            font-size: 1.5rem;
+            margin: 30px 0 15px 0;
+        }
+
+        .mermaid {
+            background: #0a0a0a;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #333;
+            overflow-x: auto;
+        }
+
+        .description {
+            color: #aaa;
+            font-size: 1rem;
+            margin: 15px 0;
+            padding: 15px;
+            background: #0a0a0a;
+            border-left: 4px solid #00a8ff;
+            border-radius: 5px;
+        }
+
+        .legend {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .legend h3 {
+            color: #00a8ff;
+            margin-bottom: 15px;
+        }
+
+        .legend-item {
+            display: inline-block;
+            margin: 10px 15px 10px 0;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .color-entry { background: #00a8ff; color: #000; }
+        .color-process { background: #ffd93d; color: #000; }
+        .color-success { background: #00ff88; color: #000; }
+        .color-error { background: #ff6b6b; color: #fff; }
+        .color-external { background: #c084fc; color: #fff; }
+        .color-storage { background: #f59e0b; color: #000; }
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #666;
+            margin-top: 50px;
+            border-top: 1px solid #333;
+        }
+
+        footer a {
+            color: #00a8ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #33b5ff;
+            text-decoration: underline;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #00a8ff;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 168, 255, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .back-to-top:hover {
+            background: #0077cc;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 168, 255, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flowchart-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Complete System Flowcharts</h1>
+            <p class="subtitle">Maxvel's Fileshare & URL Shortener Architecture</p>
+        </header>
+
+        <nav>
+            <h2>🎯 Quick Navigation</h2>
+            <div class="nav-grid">
+                <a href="#main-flow" class="nav-link">📤 Main Upload Flow</a>
+                <a href="#file-viewing" class="nav-link">👁️ File Viewing</a>
+                <a href="#domains" class="nav-link">🔀 Domain System</a>
+                <a href="#auth" class="nav-link">🔐 Authentication</a>
+                <a href="#upload" class="nav-link">📤 Upload Process</a>
+                <a href="#delete" class="nav-link">🗑️ File Deletion</a>
+                <a href="#architecture" class="nav-link">🏗️ Architecture</a>
+                <a href="#security" class="nav-link">🛡️ Security</a>
+            </div>
+        </nav>
+
+        <!-- Main Upload & View Flow -->
+        <section id="main-flow" class="flowchart-section">
+            <h2>📤 Main Upload & View Flow</h2>
+            <p class="description">
+                This flowchart shows the complete user journey from visiting the website to uploading and sharing files.
+                Users can authenticate via email or Discord OAuth, then upload files with automatic optimization for images over 500KB.
+            </p>
+            <div class="mermaid">
+flowchart TD
+    A[User visits fileshare.05050101.xyz] --> B{Authenticated?}
+    B -->|No| C[Show Login/Register]
+    B -->|Yes| D[Show Upload Interface]
+    
+    C --> E{Choose Auth Method}
+    E -->|Email| F[Email Auth Flow]
+    E -->|Discord OAuth| G[Discord Auth Flow]
+    
+    F --> H[Get Auth Token]
+    G --> H
+    
+    H --> D
+    
+    D --> I[User Selects File]
+    I --> J{File Size Check}
+    J -->|> 4.5MB| K[Error: File Too Large]
+    J -->|≤ 4.5MB| L{Is Image?}
+    
+    L -->|Yes & > 500KB| M[Optimize Image]
+    L -->|No or Small| N[Keep Original]
+    
+    M --> O[Upload to PI CDN]
+    N --> O
+    
+    O --> P{Upload Success?}
+    P -->|No| Q[Show Error & Log]
+    P -->|Yes| R[Generate Short ID]
+    
+    R --> S[Save Metadata to Firebase]
+    S --> T[Log User Upload History]
+    T --> U[Return URLs to User]
+    
+    U --> V{User Action}
+    V -->|Share| W[Copy Short URL]
+    V -->|View| X[Open File Page]
+    V -->|Delete| Y[Delete Flow]
+    
+    W --> Z[Others Can Access File]
+    X --> AA[View File with Embeds]
+    
+    style A fill:#00a8ff
+    style D fill:#00ff88
+    style O fill:#ff6b6b
+    style U fill:#ffd93d
+            </div>
+        </section>
+
+        <!-- File Viewing & Rendering -->
+        <section id="file-viewing" class="flowchart-section">
+            <h2>👁️ File Viewing & Rendering Flow</h2>
+            <p class="description">
+                When users access a file URL, the system determines the file type and renders appropriate embeds.
+                Images, videos, and audio files get inline previews, text files show syntax highlighting, and executable files display warnings.
+            </p>
+            <div class="mermaid">
+flowchart TD
+    A[User Opens File URL] --> B[Extract UUID from URL]
+    B --> C[Fetch File from CDN]
+    C --> D[Fetch Metadata from Firebase]
+    
+    D --> E{File Type?}
+    
+    E -->|Image| F[Display Image Embed]
+    E -->|Video| G[Display Video Player]
+    E -->|Audio| H[Display Audio Player]
+    E -->|Text/Code| I[Fetch & Display Content]
+    E -->|Executable| J[Show Warning Message]
+    E -->|Other| K[Show Download Button]
+    
+    F --> L[Allow Zoom/Fullscreen]
+    G --> M[Video Controls]
+    H --> N[Audio Controls]
+    I --> O[Syntax Highlighting]
+    
+    L --> P[Generate QR Code]
+    M --> P
+    N --> P
+    O --> P
+    K --> P
+    J --> Q[No Preview - Download Only]
+    
+    P --> R[Show Alternative Domains]
+    Q --> R
+    
+    R --> S[Display File Info]
+    S --> T{User Logged In?}
+    T -->|Yes| U[Show Delete Button]
+    T -->|No| V[View Only]
+    
+    style A fill:#00a8ff
+    style E fill:#ffd93d
+    style F fill:#00ff88
+    style J fill:#ff6b6b
+            </div>
+        </section>
+
+        <!-- Alternative Domains -->
+        <section id="domains" class="flowchart-section">
+            <h2>🔀 Alternative Endpoint Domains</h2>
+            <p class="description">
+                The system supports 20+ alternative domains for redundancy and flexibility. All domains point to the same backend
+                with seamless URL parsing and template rendering. Users can switch domains on-the-fly.
+            </p>
+            <div class="mermaid">
+flowchart TD
+    A[User Accesses Alt Domain] --> B{Domain Type}
+    
+    B -->|fileshare.05050101.xyz| C[Main Domain]
+    B -->|maxvel187.me| D[Alternative Domain 1]
+    B -->|maxvel.qzz.io| E[Alternative Domain 2]
+    B -->|Others| F[Any Alternative Domain]
+    
+    C --> G[Parse UUID from URL]
+    D --> G
+    E --> G
+    F --> G
+    
+    G --> H[Fetch File from CDN]
+    H --> I{File Exists?}
+    
+    I -->|Yes| J[Render File Page]
+    I -->|No| K[Redirect to Homepage]
+    
+    J --> L[Load Template]
+    L --> M[Replace Placeholders]
+    
+    M --> N[NAME]
+    M --> O[SIZE]
+    M --> P[USERNAME]
+    M --> Q[CDNURL]
+    M --> R[EMBED_BLOCK]
+    
+    N --> S[Inject File Metadata]
+    O --> S
+    P --> S
+    Q --> S
+    R --> S
+    
+    S --> T[Add Alternative Domain List]
+    T --> U[Return HTML to User]
+    
+    U --> V{User Interaction}
+    V -->|Change Domain| W[Switch to Another Domain]
+    V -->|Download| X[Direct CDN Link]
+    V -->|Share| Y[Copy Current URL]
+    
+    W --> A
+    
+    style A fill:#00a8ff
+    style G fill:#ffd93d
+    style J fill:#00ff88
+    style K fill:#ff6b6b
+            </div>
+        </section>
+
+        <!-- Authentication -->
+        <section id="auth" class="flowchart-section">
+            <h2>🔐 Authentication System</h2>
+            
+            <h3>Email Authentication</h3>
+            <p class="description">
+                Users can authenticate via email with a 6-digit code. The system checks for disposable email domains
+                and handles both login (existing users) and registration (new users) flows.
+            </p>
+            <div class="mermaid">
+flowchart TD
+    A[User Enters Email] --> B[POST Handler auth action=start]
+    B --> C{Valid Email Format?}
+    
+    C -->|No| D[Return Error]
+    C -->|Yes| E{Check Disposable Domain}
+    
+    E -->|Disposable| F[Reject Email]
+    E -->|Valid| G{Email Exists?}
+    
+    G -->|Yes - Login| H[Generate 6-digit Code]
+    G -->|No - Register| I[Generate 6-digit Code + temp_id]
+    
+    H --> J[Save to auth_codes/userid]
+    I --> K[Save to temp_auth_codes/temp_id]
+    
+    J --> L[Send Email with Code]
+    K --> L
+    
+    L --> M[User Receives Email]
+    M --> N[User Enters Code]
+    
+    N --> O[POST Handler auth action=verify]
+    O --> P{Code Valid?}
+    
+    P -->|No| Q[Return Error]
+    P -->|Yes - Login| R[Return Auth Token]
+    P -->|Yes - Register| S[Code Verified - Need Username]
+    
+    S --> T[User Provides Username]
+    T --> U[POST Handler auth action=register]
+    
+    U --> V{Username Available?}
+    V -->|No| W[Error: Username Taken]
+    V -->|Yes| X[Create User in Firebase]
+    
+    X --> Y[Generate Auth Token]
+    Y --> Z[Send Welcome Email]
+    Z --> AA[Return Auth Token]
+    
+    R --> AB[User Logged In]
+    AA --> AB
+    
+    style A fill:#00a8ff
+    style L fill:#ffd93d
+    style R fill:#00ff88
+    style AA fill:#00ff88
+            </div>
+
+            <h3>Discord OAuth Flow</h3>
+            <p class="description">
+                Discord OAuth provides instant authentication. The system can auto-join users to a Discord server,
+                link Discord accounts to existing email accounts, and fetch user avatars automatically.
+            </p>
+            <div class="mermaid">
+flowchart TD
+    A[User Clicks Discord Login] --> B[Redirect to Discord OAuth]
+    B --> C[User Authorizes on Discord]
+    C --> D[Discord Returns Code]
+    
+    D --> E[POST Handler auth action=discord_auth]
+    E --> F[Exchange Code for Access Token]
+    
+    F --> G{Token Valid?}
+    G -->|No| H[Return Error]
+    G -->|Yes| I[Fetch Discord User Info]
+    
+    I --> J[Get Discord ID, Email, Username]
+    J --> K{User in Server?}
+    
+    K -->|No| L[Auto-Join Discord Server]
+    K -->|Yes| M[Continue]
+    
+    L --> M
+    M --> N{Check Action Type}
+    
+    N -->|Link Account| O{User Logged In?}
+    O -->|No| P[Error: Must Be Logged In]
+    O -->|Yes| Q[Link Discord to Account]
+    
+    Q --> R[Update dcid in Firebase]
+    R --> S[Return Success]
+    
+    N -->|Login/Register| T{Discord ID Exists?}
+    T -->|Yes - Login| U[Return Existing Auth Token]
+    T -->|No| V{Email Exists?}
+    
+    V -->|Yes| W[Link Discord to Email Account]
+    V -->|No| X[Create New Account]
+    
+    W --> Y[Update dcid]
+    X --> Z[Generate UUID & Auth Token]
+    
+    Z --> AA[Fetch Discord Avatar]
+    AA --> AB[Create User in Firebase]
+    AB --> AC[Return Auth Token]
+    
+    Y --> AD[Return Auth Token]
+    U --> AE[User Logged In]
+    AC --> AE
+    AD --> AE
+    
+    style A fill:#00a8ff
+    style I fill:#ffd93d
+    style U fill:#00ff88
+    style AC fill:#00ff88
+            </div>
+        </section>
+
+        <!-- File Upload -->
+        <section id="upload" class="flowchart-section">
+            <h2>📤 File Upload System</h2>
+            <p class="description">
+                The upload system includes authentication checks, ban verification, automatic image optimization for JPEGs over 500KB,
+                EXIF data removal, orientation fixing, and compression to 85% quality. All files are uploaded to PI CDN.
+            </p>
+            <div class="mermaid">
+flowchart TD
+    A[User Selects File] --> B[Check Authentication]
+    B --> C{Valid Token?}
+    
+    C -->|No| D[Error: Unauthorized]
+    C -->|Yes| E{User Banned?}
+    
+    E -->|Yes| F[Error: User Banned]
+    E -->|No| G[Parse File from Request]
+    
+    G --> H[Extract Filename]
+    H --> I{File Type?}
+    
+    I -->|JPEG/JPG| J{Size > 500KB?}
+    I -->|Other| K[Keep Original]
+    
+    J -->|Yes| L[Optimize Image]
+    J -->|No| K
+    
+    L --> M[Remove EXIF Data]
+    M --> N[Fix Orientation]
+    N --> O[Compress to 85% Quality]
+    O --> P[Reduction Achieved]
+    
+    P --> Q[Upload to PI CDN]
+    K --> Q
+    
+    Q --> R[POST with X-API-Key]
+    R --> S{CDN Response?}
+    
+    S -->|Error| T[Log Failure]
+    S -->|Success| U[Extract file_id from Response]
+    
+    U --> V[Generate short_id]
+    V --> W[Create Firebase Record]
+    
+    W --> X[files/short_id]
+    X --> Y[Store: fileName, size, username, id, file_id]
+    
+    Y --> Z[Update User's File List]
+    Z --> AA[users/userid/files/short_id]
+    
+    AA --> AB[Log Upload Event]
+    AB --> AC[Send Success Webhook]
+    
+    AC --> AD[Build Response URLs]
+    AD --> AE[short_url, raw_url, file_id, delete_url]
+    
+    AE --> AF[Return to User]
+    
+    T --> AG[Send Failure Webhook]
+    AG --> AH[Return Error]
+    
+    style A fill:#00a8ff
+    style L fill:#ffd93d
+    style Q fill:#ff6b6b
+    style AF fill:#00ff88
+            </div>
+        </section>
+
+        <!-- File Deletion -->
+        <section id="delete" class="flowchart-section">
+            <h2>🗑️ File Deletion System</h2>
+            <p class="description">
+                Deletion requires both file_id and short_id parameters. The system logs all attempts with IP addresses,
+                deletes from both CDN and Firebase, and returns detailed success/error pages.
+            </p>
+            <div class="mermaid">
+flowchart TD
+    A[User Clicks Delete] --> B[GET/DELETE Handler delete]
+    B --> C[Parse Query Parameters]
+    
+    C --> D[Extract file_id k]
+    C --> E[Extract short_id n]
+    
+    D --> F{Both Parameters Present?}
+    E --> F
+    
+    F -->|No| G[Error: Missing Parameters]
+    F -->|Yes| H[Log Attempt with IP]
+    
+    H --> I[Fetch File Record from Firebase]
+    I --> J[files/short_id.json]
+    
+    J --> K{Record Exists?}
+    K -->|No| L[Error: File Not Found]
+    K -->|Yes| M[Delete from PI CDN]
+    
+    M --> N[DELETE to db1.05050101.xyz]
+    N --> O{CDN Delete Success?}
+    
+    O -->|Yes| P[Continue]
+    O -->|No| Q[Log CDN Error]
+    
+    Q --> P
+    P --> R[Delete from Firebase]
+    
+    R --> S[DELETE files/short_id.json]
+    S --> T{Firebase Delete Success?}
+    
+    T -->|No| U[Error: Firebase Failed]
+    T -->|Yes| V[Log Successful Deletion]
+    
+    V --> W[Return HTML Success Page]
+    W --> X[Show: shortId, fileId, IP]
+    
+    U --> Y[Return JSON Error]
+    L --> Y
+    G --> Y
+    
+    style A fill:#00a8ff
+    style M fill:#ff6b6b
+    style W fill:#00ff88
+            </div>
+        </section>
+
+        <!-- System Architecture -->
+        <section id="architecture" class="flowchart-section">
+            <h2>🏗️ Overall Architecture</h2>
+            <p class="description">
+                The complete system runs on Vercel serverless functions with Firebase for database,
+                PI for CDN, SMTP for emails, and Discord webhooks for logging. All components are interconnected.
+            </p>
+            <div class="mermaid">
+        flowchart TD
+            A[Client Browser] --> B{Entry Point}
+            
+            B -->|fileshare.05050101.xyz| C[Main Fileshare]
+            B -->|Alternative Domains| D[Alt Domain Handler ]
+            B -->|Short URLs| E[URL Shortener]
+            
+            C --> F[Vercel Serverless Functions]
+            D --> F
+            E --> F
+
+            F --> H_delete
+            F --> I_auth
+            F --> J_redirect
+            F --> K_shorten
+            F --> H_upload
+
+            H_delete["Handler delete.py"]
+            I_auth["Handler auth.py"]
+            J_redirect["Handler redirect.py"]
+            K_shorten["Handler shorten.py"]
+            H_upload["Handler upload.py"]
+
+            G --> L[Firebase Realtime Database]
+            H_delete --> L
+            I_auth --> L
+            J_redirect --> L
+            K_shorten --> L
+            H_upload --> L
+            
+            G --> M[PI CDN]
+            H_delete --> M
+            H_upload --> M
+            
+            I_auth --> N[SMTP Email Server]
+            I_auth --> O[Discord OAuth API]
+            
+            M --> P[db1.05050101.xyz/uploads/]
+            
+            L --> Q[User Data]
+            L --> R[File Metadata]
+            L --> S[URL Mappings]
+            L --> T[Auth Codes]
+            
+            C --> U[Public HTML Pages]
+            U --> V[index.html]
+            U --> W[report.html]
+            
+            F --> X[Discord Webhooks]
+            X --> Y[Success Logs]
+            X --> Z[Failure Logs]
+            X --> A1[Auth Logs]
+            
+            style A fill:#00a8ff
+            style F fill:#ffd93d
+            style L fill:#00ff88
+            style M fill:#ff6b6b
+            style N fill:#c084fc
+
+            </div>
+        </section>
+        <!-- Security -->
+        <section id="security" class="flowchart-section">
+            <h2>🛡️ Security & Validation</h2>
+            <p class="description">
+                Every request goes through comprehensive security checks including IP logging, token validation,
+                user existence verification, ban checks, rate limiting, and request-specific validation.
+            </p>
+            <div class="mermaid">
+flowchart TD
+    A[Request Arrives] --> B[Extract Client IP]
+    B --> C[Log IP Address]
+    
+    C --> D{Has Auth Token?}
+    D -->|No| E[Reject if Required]
+    D -->|Yes| F[Validate Token]
+    
+    F --> G{Token Valid?}
+    G -->|No| E
+    G -->|Yes| H[Lookup User]
+    
+    H --> I{User Exists?}
+    I -->|No| E
+    I -->|Yes| J{User Banned?}
+    
+    J -->|Yes| K[Error: User Banned]
+    J -->|No| L[Log IP to User History]
+    
+    L --> M[Check Rate Limits]
+    M --> N{Within Limits?}
+    
+    N -->|No| O[Error: Rate Limited]
+    N -->|Yes| P[Process Request]
+    
+    P --> Q{Request Type?}
+    Q -->|Upload| R[Validate File Size]
+    Q -->|Auth| S[Validate Email Format]
+    Q -->|Delete| T[Verify Ownership]
+    
+    R --> U{Valid?}
+    S --> U
+    T --> U
+    
+    U -->|No| V[Reject Request]
+    U -->|Yes| W[Execute Action]
+    
+    W --> X[Log Success]
+    E --> Y[Log Rejection]
+    K --> Y
+    O --> Y
+    V --> Y
+    
+    style A fill:#00a8ff
+    style W fill:#00ff88
+    style E fill:#ff6b6b
+    style K fill:#ff6b6b
+            </div>
+        </section>
+
+        <!-- Legend -->
+        <div class="legend">
+            <h3>🎨 Color Legend</h3>
+            <span class="legend-item color-entry">Entry Points</span>
+            <span class="legend-item color-process">Process Steps</span>
+            <span class="legend-item color-success">Success States</span>
+            <span class="legend-item color-error">Error States</span>
+            <span class="legend-item color-external">External Services</span>
+            <span class="legend-item color-storage">Data Stores</span>
+        </div>
+
+        <footer>
+            <p>Created with ❤️ by Maxvel187</p>
+            <p>
+                <a href="https://guns.lol/maxvel187" target="_blank">guns.lol/maxvel187</a> |
+                <a href="https://github.com/MAXVEL187" target="_blank">GitHub</a> |
+                <a href="https://donate.05050101.xyz/" target="_blank">Donate</a>
+            </p>
+            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
+                Powered by Mermaid.js • Deployed on Vercel • Firebase Database • PI CDN
+            </p>
+        </footer>
+    </div>
+
+    <a href="#" class="back-to-top" id="backToTop">↑</a>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#00a8ff',
+                primaryTextColor: '#f3f4f6',
+                primaryBorderColor: '#00a8ff',
+                lineColor: '#666',
+                secondaryColor: '#ffd93d',
+                tertiaryColor: '#ff6b6b'
+            }
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
