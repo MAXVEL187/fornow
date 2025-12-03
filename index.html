@@ -14,19 +14,15 @@
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* already set */
+            min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #0a0a0a;
-            min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
         .container {
-            flex: 1; /* take all available space before footer */
-        }
-
-        .container {
+            flex: 1;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
@@ -69,6 +65,8 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
             margin-top: 50px;
+            width: 100%;
+            align-items: stretch; /* equal height cards */
         }
 
         .service-card {
@@ -82,6 +80,9 @@
             overflow: hidden;
             opacity: 0;
             transform: scale(0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .service-card.show {
@@ -89,17 +90,9 @@
         }
 
         @keyframes popIn {
-            0% {
-                opacity: 0;
-                transform: scale(0) rotate(-10deg);
-            }
-            60% {
-                transform: scale(1.1) rotate(2deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
+            0% { opacity: 0; transform: scale(0) rotate(-10deg); }
+            60% { transform: scale(1.1) rotate(2deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
         }
 
         .service-card::before {
@@ -114,10 +107,7 @@
             transition: opacity 0.4s ease;
         }
 
-        .service-card:hover::before {
-            opacity: 1;
-        }
-
+        .service-card:hover::before { opacity: 1; }
         .service-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 0 40px rgba(0, 168, 255, 0.4), 0 15px 35px rgba(0, 0, 0, 0.3);
@@ -174,10 +164,7 @@
             z-index: -1;
         }
 
-        .service-button:hover::before {
-            left: 0;
-        }
-
+        .service-button:hover::before { left: 0; }
         .service-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 168, 255, 0.5);
@@ -214,19 +201,13 @@
             transition: width 0.3s ease;
         }
 
-        .footer-links a:hover::after {
-            width: 100%;
-        }
-
-        .footer-links a:hover {
-            color: #33b5ff;
-        }
+        .footer-links a:hover::after { width: 100%; }
+        .footer-links a:hover { color: #33b5ff; }
 
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            .services-grid { grid-template-columns: 1fr; gap: 20px; }
-            .service-card { padding: 25px; }
-            .container { padding: 10px; }
+            .services-grid { grid-template-columns: 1fr; gap: 20px; width: 100%; }
+            .service-card { width: 100%; max-width: 100%; padding: 25px; }
         }
 
         /* Floating bubbles background */
@@ -261,20 +242,9 @@
         .bubble:nth-child(8) { width: 65px; height: 65px; left: 90%; animation-duration: 13s; animation-delay: 0.8s; }
 
         @keyframes rise {
-            0% {
-                bottom: -100px;
-                transform: translateX(0) scale(1);
-                opacity: 0.6;
-            }
-            50% {
-                transform: translateX(100px) scale(1.1);
-                opacity: 0.8;
-            }
-            100% {
-                bottom: 110%;
-                transform: translateX(-100px) scale(0.8);
-                opacity: 0;
-            }
+            0% { bottom: -100px; transform: translateX(0) scale(1); opacity: 0.6; }
+            50% { transform: translateX(100px) scale(1.1); opacity: 0.8; }
+            100% { bottom: 110%; transform: translateX(-100px) scale(0.8); opacity: 0; }
         }
     </style>
 </head>
@@ -297,6 +267,8 @@
             <h1 id="typed-text"></h1>
             <p class="subtitle"></p>
         </header>
+
+        <div class="services-grid">
             <div class="service-card filehost-card">
                 <div class="service-header">
                     <h2 class="service-title">Maxvels's Fileshare</h2>
@@ -313,42 +285,42 @@
                     <a href="https://fileshare.05050101.xyz/" class="service-button">Access Fileshare</a>
                 </div>
             </div>
-        <div class="services-grid">
+
             <div class="service-card blockblast-card">
                 <div class="service-header">
                     <h2 class="service-title">Block Blast</h2>
-                    <p class="service-description">Blockblast Online (Made whith Unity)</p>
+                    <p class="service-description">Blockblast online replica, made whith unity</p>
                 </div>
                 <div style="text-align: center;">
                     <a href="https://blockblast.05050101.xyz/" class="service-button">Play Block Blast</a>
                 </div>
-            </div>       
+            </div>
 
             <div class="service-card guns-card">
                 <div class="service-header">
                     <h2 class="service-title">Url-Shortener</h2>
-                    <p class="service-description">A Url is too long? Why not just make it shorter?</p>
+                    <p class="service-description">A Url is too long? Why not just make it shorter? 
+                        If you want to use more then 30 Domains,
+                        consider using FILESHARE</p>
                 </div>
                 <div style="text-align: center;">
                     <a href="https://urls.05050101.xyz/" class="service-button">Make a link shorter</a>
                 </div>
             </div>
-
-
         </div>
 
-    <footer>
-        <div class="footer-links">
-            <a href="https://guns.05050101.xyz">My guns.lol</a>
-            <a href="https://terms.05050101.xyz/">ToS</a>
-            <a href="https://05050101.xyz/how-does-it-work">Flowchart</a>
-        </div>
-        <p>&copy; 2025 - Maxvel187</p>
-    </footer>
+        <footer>
+            <div class="footer-links">
+                <a href="https://guns.05050101.xyz">My guns.lol</a>
+                <a href="https://terms.05050101.xyz/">ToS</a>
+                <a href="https://05050101.xyz/how-does-it-work">Flowchart</a>
+            </div>
+            <p>&copy; 2025 - Maxvel187</p>
+        </footer>
     </div>
 
     <script>
-        // Clean typing effect
+        // Typewriter effect for header
         const text = "Hello World!";
         const typedTextElement = document.getElementById('typed-text');
         let charIndex = 0;
@@ -360,16 +332,12 @@
                 setTimeout(typeText, 50);
             }
         }
-
-        // Start typing immediately
         typeText();
 
-        // Cards pop in effect with staggered timing
+        // Cards pop in effect
         const cards = document.querySelectorAll('.service-card');
         cards.forEach((card, index) => {
-            setTimeout(() => {
-                card.classList.add('show');
-            }, 200 + (index * 200));
+            setTimeout(() => card.classList.add('show'), 200 + index * 200);
         });
 
         // Ripple effect on buttons
@@ -380,7 +348,7 @@
                 const size = Math.max(rect.width, rect.height);
                 const x = e.clientX - rect.left - size / 2;
                 const y = e.clientY - rect.top - size / 2;
-                
+
                 ripple.style.width = ripple.style.height = size + 'px';
                 ripple.style.left = x + 'px';
                 ripple.style.top = y + 'px';
@@ -390,46 +358,29 @@
                 ripple.style.transform = 'scale(0)';
                 ripple.style.animation = 'ripple 0.6s ease-out';
                 ripple.style.pointerEvents = 'none';
-                
+
                 this.appendChild(ripple);
                 setTimeout(() => ripple.remove(), 600);
             });
         });
 
-        // Add ripple CSS
+        // Add ripple animation
         const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple { to { transform: scale(4); opacity: 0; } }
-        `;
+        style.textContent = '@keyframes ripple { to { transform: scale(4); opacity: 0; } }';
         document.head.appendChild(style);
 
-        // Typewriter effect for browser tab title
+        // Tab title typewriter
         (function() {
             const tabText = "Maxvel187";
-            let step = 0;
-            let forward = true;
-
+            let step = 0, forward = true;
             function updateTitle() {
-                if (forward) {
-                    step++;
-                    if (step > tabText.length) {
-                        step = tabText.length - 1;
-                        forward = false;
-                    }
-                } else {
-                    step--;
-                    if (step < 1) {
-                        step = 1;
-                        forward = true;
-                    }
-                }
+                if(forward) { step++; if(step>tabText.length){step=tabText.length-1; forward=false;} }
+                else { step--; if(step<1){step=1; forward=true;} }
                 document.title = tabText.substring(0, step);
-                setTimeout(() => requestAnimationFrame(updateTitle), 300); // throttled to 200ms
+                setTimeout(()=>requestAnimationFrame(updateTitle), 300);
             }
-
             updateTitle();
         })();
-
     </script>
 </body>
 </html>
